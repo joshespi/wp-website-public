@@ -20,16 +20,20 @@
 
 }
 
+.headerAddress {
+    max-width: 1500px;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 .siteLogo img {
     max-height: 75px;
 }
 
 .siteLogo address {
     margin-top: -15px;
-}
-
-.siteLogo address span {
-    /* display: block; */
 }
 
 .siteSearch {
@@ -65,11 +69,9 @@
 }
 
 #navbar .homeLink {
-    /* background-color: var(--body-background); */
     background: url(../icons/icons8-home-page-32.png) 0 0 no-repeat var(--body-background);
     background-position: 1em 50%;
     text-indent: -9999px;
-    /* width: 8px; */
 }
 
 #navbar a {
@@ -94,11 +96,6 @@
     left: 0;
     list-style: none;
 }
-
-/* #navbar ul.active {
-    display: grid;
-    position: absolute;
-} */
 
 #navbar ul li a {
     align-self: center;
@@ -128,6 +125,10 @@
         width: 100%;
     }
 
+    .headerAddress {
+        text-align: unset;
+    }
+
     .admin-bar #mainHeader {
         top: 32px;
     }
@@ -140,24 +141,19 @@
         margin-top: 125px;
     }
 
-    .headerAddress {
-        display: inline;
-    }
-
     body.admin-bar #trp-floater-ls.trp-top-right {
         top: 102px;
     }
 
     #navbar {
-        width: 75%;
+        width: 82%;
+
+
     }
 
     #navbar .homeLink {
-        /* background-color: var(--body-background); */
-        /* background: url(../icons/icons8-home-page-32.png) 0 0 no-repeat var(--body-background); */
         background-position: center center;
-        min-width: 15px
-            /* text-indent: -9999px; */
+        min-width: 15px;
     }
 
     #navbar a {
@@ -169,7 +165,7 @@
         gap: 10px;
         background-color: unset;
         justify-content: flex-end;
-        margin-top: -32px;
+        margin-top: -13px;
         align-items: flex-end;
         padding-right: 1em;
     }
@@ -195,7 +191,6 @@
     #navbar li.active {
         min-height: 40px;
         margin-top: -15px;
-
     }
 }
 
@@ -208,6 +203,7 @@
 @media (min-width: 1100px) {
     #navbar {
         grid-column: 1 / span 2;
+        width: 96%;
     }
 
     .siteLogo {
@@ -231,9 +227,7 @@
     }
 
     #trp-floater-ls.trp-top-right {
-        /* bottom: auto; */
         top: 72px;
         right: 25px;
-        /* border-radius: 5px 5px 0 0; */
     }
 }

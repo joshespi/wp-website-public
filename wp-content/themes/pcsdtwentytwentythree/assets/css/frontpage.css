@@ -4,172 +4,20 @@
 
 }
 
-#announcments,
-#belowSlider {
+#belowSlider,
+#stickyArea {
 	width: 100%;
 	max-width: 1500px;
 	margin: 0 auto;
 }
 
 /*
-================================================================================================================
-Front page Slider
-================================================================================================================
-*/
-
-#announcments video {
-	max-width: 100%;
-	max-height: 600px;
-	display: block;
-	margin: 0 auto;
-}
-
-#announcments h2 {
-	position: absolute;
-	left: -9999px
-}
-
-
-@media (min-width:700px) {
-	.mobile-slide {
-		display: none !important;
-	}
-
-	#announcments {
-		background-image: url(../img/background/slider-background.png);
-	}
-
-	.slick-wrapper {
-		background-repeat: no-repeat;
-		background-position: 50% 50%;
-		background-size: cover;
-	}
-
-	.slide {
-		background-size: contain;
-		background-repeat: no-repeat;
-		background-position: 50% 50%;
-		min-height: 30vh;
-		position: relative;
-
-	}
-
-	.slide .slide-text {
-		position: absolute;
-		left: 50%;
-		transform: translateX(-50%);
-		bottom: 0;
-		background-color: rgba(255, 233, 244, 0.9);
-		padding: 5px 1em 10px 1em;
-	}
-
-	#announcments .slick-arrow {
-		display: none !important;
-	}
-
-	.slide {
-		min-height: 45vh;
-	}
-}
-
-/*
 ------------------------------------------------------------------------------------------------------------------------------------------
-Home Page News
+Home Page Categories
 ------------------------------------------------------------------------------------------------------------------------------------------
 */
-#homeNews {
-	display: block;
-	padding: 2em;
-	/* margin-bottom: 80px;
-	padding-top: 20px; */
-	background-color: var(--main-ltblue-color);
-}
-
-#homeNews .stories {}
-
-#homeNews .stories h2 {
-	max-width: 95%;
-	text-align: left;
-	padding-left: 5%
-}
-
-#homeNews .stories {
-	display: grid;
-	grid-template-columns: repeat(3, minmax(30%, 1fr));
-	gap: 1%;
-}
-
-#homeNews .stories article,
-#homeNews .moreNews,
 #homeNews .categories-6h ul li {
-	background-color: var(--theme-white);
-}
-
-#homeNews .stories .articleContent {
-	padding-left: 5%;
-	padding-right: 5%;
-	text-align: left;
-	height: 85px;
-	overflow: hidden;
-}
-
-#homeNews .stories .readMore {
-	text-align: left;
-	padding-left: 5%;
-	margin-top: 0;
-
-}
-
-#homeNews .moreNews {
-	margin-top: 35px;
-}
-
-#homeNews .stories .postDate {
-	text-align: right;
-	margin-right: 5%;
-}
-
-#homeNews .categories-6h ul {
-	display: grid;
-	/* grid-template-columns: repeat(2, 1fr); */
-	grid-template-columns: 1fr;
-	list-style: none;
-	gap: 1em;
-}
-
-@media (min-width:350px) {
-	#homeNews .categories-6h ul {
-		grid-template-columns: repeat(2, 1fr);
-
-	}
-}
-
-@media (min-width:600px) {
-	#homeNews .categories-6h ul {
-		grid-template-columns: repeat(3, 1fr);
-
-	}
-
-	#homeNews .moreNews {
-		margin-top: 20px;
-	}
-}
-
-@media (min-width:1000px) {
-	#homeNews .categories-6h ul {
-		grid-template-columns: repeat(6, 1fr);
-
-	}
-
-	#homeNews .moreNews {
-		margin-top: 10px;
-	}
-}
-
-#homeNews .categories-6h ul li {
-	/* display: flex; */
 	align-items: center;
-	/* justify-content: center; */
 	flex-direction: column;
 	flex-wrap: wrap;
 	text-align: center;
@@ -187,33 +35,87 @@ Home Page News
 }
 
 /*
-----------------------------------------------------------------
-Responsive styles
-----------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
+Home Page posts
+------------------------------------------------------------------------------------------------------------------------------------------
 */
-@media (max-width: 1000px) {
-	#homeNews .stories {
-		grid-template-columns: repeat(2, minmax(50%, 1fr));
-	}
+.posts article {
+	position: relative;
+	padding: 1em 2em;
+	background-position: center;
+	color: var(--theme-white);
+	overflow: hidden;
+	align-content: center;
+	min-height: 250px;
+	border: 1px solid var(--theme-black);
+}
 
-	#homeNews .stories article:last-child {
-		grid-column-start: 0;
-		grid-column-end: span 2;
+.posts article::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 1;
+}
+
+.posts article h2 {
+	position: relative;
+	z-index: 2;
+	color: var(--theme-white);
+}
+
+.posts a {
+	text-decoration: none;
+}
+
+.stories {
+	display: grid;
+	gap: 1%;
+}
+
+#homeNews .categories-6h ul {
+	display: grid;
+	grid-template-columns: 1fr;
+	list-style: none;
+	gap: 1em;
+}
+
+@media (min-width:350px) {
+	#homeNews .categories-6h ul {
+		grid-template-columns: repeat(2, 1fr);
 	}
 }
 
-@media (max-width: 575px) {
-	#homeNews .stories {
-		grid-template-columns: 1fr;
-	}
-
-	#homeNews .stories article:last-child {
-		grid-column-start: unset;
-		grid-column-end: unset;
+@media (min-width:600px) {
+	#homeNews .categories-6h ul {
+		grid-template-columns: repeat(3, 1fr);
 	}
 }
 
+@media (min-width:1000px) {
+	.stories {
+		grid-template-columns: repeat(3, minmax(30%, 1fr));
+		min-height: 250px;
+	}
 
+	#stickyArea .stories {
+		display: grid;
+		grid-template-columns: 4fr 2fr;
+		gap: 1em;
+	}
+
+	#stickyArea .stories article:first-child {
+		grid-row-end: span 2;
+	}
+
+	#homeNews .categories-6h ul {
+		grid-template-columns: repeat(6, 1fr);
+	}
+
+}
 
 /*
 --------------------------------------------------------------------------------------------------------------

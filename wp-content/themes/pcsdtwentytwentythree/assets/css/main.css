@@ -31,7 +31,17 @@ body {
     margin: 1em 0 1em 2em;
 }
 
-@media (min-width:600px) {}
+@media (min-width: 800px) {
+
+    #mainContent {
+        margin-top: 129px;
+        margin-bottom: 40px;
+    }
+
+    #mainContent.sidebar {
+        margin-top: 130px;
+    }
+}
 
 @media (min-width:1000px) {
     #mainContent.sidebar {
@@ -40,53 +50,35 @@ body {
     }
 }
 
-/*
---------------------------------------------------------------------------------------------------------------
-Post Signature
---------------------------------------------------------------------------------------------------------------
-*/
-button {
-    background-color: var(--main-blue-color);
-    color: var(--theme-white);
-    padding: 1em;
-    border-radius: 40px;
-}
+@media (min-width: 1100px) {
+    #mainContent {
+        margin-top: 130px;
+    }
 
-button:hover {
-    color: var(--link-hover-color);
-}
+    #mainContent.fullwidth {
+        margin-top: 128px;
+    }
 
-.post_sig {
-    width: 400px;
-    background-color: #f1f5f9;
-    text-align: center;
-    margin: 1em auto;
-    display: grid;
-    grid-template-columns: 120px 1fr;
-}
+    .admin-bar #mainContent.fullwidth {
+        margin-top: 110px;
+    }
 
-.post_sig ul,
-.post_sig ul li {
-    list-style: none;
-    margin: 0;
-}
+    .admin-bar #mainContent.sidebar {
+        margin-top: 107px;
+    }
 
-.post_sig ul {
-    place-self: center;
+    #mainContent.sidebar {
+        margin-top: 128px;
+    }
 }
 
 /* 
 --------------------------------------------------------------------
-Utility
+Utility Classes and IDs
 --------------------------------------------------------------------
 */
 #image404 {
     float: right;
-}
-
-.contactlist li {
-    list-style: none;
-    margin: 0 0 0 0 !important;
 }
 
 .powered-by {
@@ -100,7 +92,6 @@ Utility
 
 .novisibility,
 .hidden {
-    /* visibility: hidden; */
     position: absolute;
     left: -9999px;
 }
@@ -137,101 +128,39 @@ Utility
     list-style: none;
 }
 
-.fwtop .wp-post-image {
+.bigRedButton {
+    border: 1px solid black;
     display: block;
-    margin: 0 auto
+    text-align: center;
+    padding: 1em 0;
+    border-radius: 5px;
+    margin: 1em;
+    background-color: red;
+    color: white
 }
 
-/* grid2 styling */
-.grid2 {
-    display: grid;
-    gap: 1em;
+.bigRedButton:hover {
+    background-color: purple;
 }
 
-.grid2 .slide {
-    max-width: 100%;
+.lastmodified {
+    display: inline;
+    float: right;
+    ;
 }
 
-.grid2 div:nth-child(1) img {
-    margin: 0 auto;
-    display: block;
-}
-
-.grid2 div:nth-child(2):has(video) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-@media only screen and (min-width: 700px) {
-    .grid2 {
-        grid-template-columns: repeat(2, minmax(50%, 1fr));
-        gap: 2em;
-        justify-content: space-evenly;
-    }
-}
-
-/* grid3 styling */
-.grid3 {
-    display: grid;
-}
-
-/* Grid coloring */
-#currentPage .postList .grid3 .post:nth-child(even) {
-    background-color: var(--even-color);
-}
-
-#currentPage .postList .grid3 .post:nth-child(odd) {
-    background-color: var(--odd-color);
-}
-
-.grid3.altColors>* {
-    padding: 1em;
-}
-
-.grid3.altColors>*:nth-child(even) {
-    background-color: var(--even-color);
-}
-
-.grid3.altColors>*:nth-child(odd) {
-    background-color: var(--odd-color);
-}
-
-#currentPage ul.grid3 {
-    margin: unset;
-
-}
-
-#currentPage ul.grid3 li {
-    margin: unset;
-    display: flex;
-    align-items: center;
-    gap: 1em;
-    min-width: 200px;
-    max-width: 500px;
-}
-
-#currentPage ul.grid3 li img {
-    max-width: 100px;
-}
-
-@media only screen and (min-width: 600px) {
-    .grid3 {
-        grid-template-columns: repeat(3, 1fr);
-        /* gap: 1em; */
-        justify-content: space-evenly;
-    }
-
-    .postList .grid3 {
-        gap: unset;
-        max-width: 1500px;
-        margin: 0 auto;
-    }
-}
-
-/* Wordpress Menu Display */
+/* 
+---------------------------------------------------------------------------------
+On Page Elements
+---------------------------------------------------------------------------------
+*/
+/* 
+---------------------------------------------------------------------------------
+Wordpress Menu Display on templates
+---------------------------------------------------------------------------------
+*/
 .wpMenu {
-    border-top: 1px solid var(--main-blue-color);
+    border-top: 2px solid var(--main-blue-color);
     padding: 1em 0;
 }
 
@@ -272,43 +201,6 @@ Utility
     }
 }
 
-@media (min-width: 800px) {
-
-    #mainContent {
-        margin-top: 140px;
-        margin-bottom: 40px;
-    }
-
-    #mainContent.sidebar {
-        margin-top: 130px;
-    }
-}
-
-@media (min-width: 1100px) {
-    #mainContent {
-        margin-top: 130px;
-
-    }
-
-    #mainContent.fullwidth {
-        margin-top: 128px;
-
-    }
-
-    .admin-bar #mainContent.fullwidth {
-        margin-top: 110px;
-
-    }
-
-    .admin-bar #mainContent.sidebar {
-        margin-top: 107px;
-    }
-
-    #mainContent.sidebar {
-        margin-top: 128px;
-    }
-}
-
 @media (min-width: 1300px) {
     .wpMenu ul {
         grid-template-columns: repeat(6, 1fr);
@@ -318,9 +210,92 @@ Utility
 
 /* 
 ---------------------------------------------------------------------------------
-On Page Elements
+Grid Styling
 ---------------------------------------------------------------------------------
 */
+/* grid2 styling */
+.grid2 {
+    display: grid;
+    gap: 1em;
+}
+
+.grid2 .slide {
+    max-width: 100%;
+}
+
+.grid2 div:nth-child(1) img {
+    margin: 0 auto;
+    display: block;
+}
+
+.grid2 div:nth-child(2):has(video) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (min-width: 700px) {
+    .grid2 {
+        grid-template-columns: repeat(2, minmax(50%, 1fr));
+        gap: 2em;
+        justify-content: space-evenly;
+    }
+}
+
+/* grid3 styling */
+.grid3 {
+    display: grid;
+}
+
+#currentPage .postList .grid3 .post:nth-child(even) {
+    background-color: var(--even-color);
+}
+
+#currentPage .postList .grid3 .post:nth-child(odd) {
+    background-color: var(--odd-color);
+}
+
+.grid3.altColors>* {
+    padding: 1em;
+}
+
+.grid3.altColors>*:nth-child(even) {
+    background-color: var(--even-color);
+}
+
+.grid3.altColors>*:nth-child(odd) {
+    background-color: var(--odd-color);
+}
+
+#currentPage ul.grid3 {
+    margin: unset;
+}
+
+#currentPage ul.grid3 li {
+    margin: unset;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    min-width: 200px;
+    max-width: 500px;
+}
+
+#currentPage ul.grid3 li img {
+    max-width: 100px;
+}
+
+@media only screen and (min-width: 600px) {
+    .grid3 {
+        grid-template-columns: repeat(3, 1fr);
+        justify-content: space-evenly;
+    }
+
+    .postList .grid3 {
+        gap: unset;
+        max-width: 1500px;
+        margin: 0 auto;
+    }
+}
 
 /* 
 -----------------------------------
@@ -374,29 +349,7 @@ Skip nav link
     overflow: hidden;
 }
 
-/* post meta  */
-.postmeta ul {
-    /* display: flex; */
-    list-style: none;
-    font-size: 0.8em;
-    gap: .5em;
-}
 
-.postmeta ul li {
-    padding-right: .5em;
-    display: inline;
-}
-
-.postmeta ul li img {
-    width: 10px;
-    margin-bottom: 0;
-    margin-right: 5px;
-    margin-left: 2px;
-}
-
-.postmeta ul li:last-of-type {
-    border-right: unset;
-}
 
 /* Archive Nav  */
 .archiveNav {
@@ -440,32 +393,31 @@ Stay Current
 */
 #stayCurrent {
     display: grid;
-    justify-content: center;
+    justify-content: stretch;
     padding-top: 20px;
+    margin-top: 20px;
 }
 
-#stayCurrent li {
-    list-style: none;
-    margin: unset;
-}
 
 #stayCurrent ul {
     display: grid;
     margin: unset;
+    margin-bottom: -2px;
     justify-content: center;
     grid-template-columns: 1fr;
-    gap: 1em;
+    gap: 14px;
+}
+
+#stayCurrent ul li {
+    list-style: none;
+    margin: unset;
+    border: 2px solid var(--main-blue-color);
+    text-align: center;
 }
 
 #stayCurrent ul a {
-    background-color: var(--stu-color);
-    color: #fff;
-    padding: 1em;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    display: grid;
-    grid-template-columns: 1fr 1em;
-    gap: .5em;
+    color: var(--main-blue-color);
+    padding: 5px;
     text-decoration: none;
 }
 
@@ -473,50 +425,27 @@ Stay Current
     text-decoration: underline;
 }
 
-#stayCurrent ul a:after {
-    content: '';
-    background-image: url(../icons/light/register.png);
-    background-size: cover;
-    position: unset;
-    left: unset;
-    width: 19px;
-    height: 19px;
-}
-
-#stayCurrent ul li:nth-child(odd) a {
-    background-color: var(--stu-color);
-}
-
-/*---------------------------------------------------------------------------------
-Stay Current - Colors
----------------------------------------------------------------------------------*/
-#stayCurrent ul li:nth-child(even) a {
-    background-color: var(--emp-color);
-}
-
-/*---------------------------------------------------------------------------------
-Stay Current - Icons
----------------------------------------------------------------------------------*/
-#stayCurrent ul li.register a:after {
-    background-image: url(../icons/light/register.png);
-}
-
-#stayCurrent ul li.calendar a:after {
-    background-image: url(../icons/light/calendar.svg);
-}
-
-#stayCurrent ul li.newsletter a:after {
-    background-image: url(../icons/light/newsletter-icon.png);
-}
-
 @media (min-width:700px) {
+    #stayCurrent ul {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width:1300px) {
     #stayCurrent {
         justify-content: end;
     }
 
     #stayCurrent ul {
-        display: flex;
-        align-items: flex-end;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+
+    }
+
+    #stayCurrent ul li {
+        min-width: 234px;
     }
 }
 
@@ -528,6 +457,7 @@ Stay Current - Icons
 .fullwidth .employeeHighlights,
 .fullwidth .departmentTiles,
 .fullwidth h1,
+#stickyArea,
 #currentPage h1 {
     width: 100%;
     max-width: 1500px;
@@ -629,14 +559,6 @@ ul.policystyle li:nth-child(even) ul li {
     margin: 0 1em 1em 0
 }
 
-
-/* Last Modified  */
-.lastmodified {
-    display: inline;
-    float: right;
-    ;
-}
-
 /* Directory Grid  */
 .directoryGrid {
     display: flex;
@@ -719,25 +641,6 @@ ul.policystyle li:nth-child(even) ul li {
     font-size: 0.8em;
 }
 
-
-
-
-/* Big Red Button */
-.bigRedButton {
-    border: 1px solid black;
-    display: block;
-    text-align: center;
-    padding: 1em 0;
-    border-radius: 5px;
-    margin: 1em;
-    background-color: red;
-    color: white
-}
-
-.bigRedButton:hover {
-    background-color: purple;
-}
-
 /* Image Lists Grid */
 .imageListGrid {
     display: grid;
@@ -767,16 +670,12 @@ ul.policystyle li:nth-child(even) ul li {
 @media only screen and (min-width: 600px) {
     .imageListGrid {
         grid-template-columns: repeat(3, 1fr);
-
     }
 }
 
-/* weglot fix  */
-.weglot-default {
-    z-index: 1001;
-}
-
-/* directory search/filter  */
+/*================================================================================================================
+Page - Directory search/filtering
+================================================================================================================*/
 #directorySearchIcon {
     width: 22px;
     height: 22px;
@@ -786,7 +685,6 @@ ul.policystyle li:nth-child(even) ul li {
 .rightSidebar #directorySearchIcon {
     display: inline;
 }
-
 
 #currentPage .directoryFilter {
     display: block;
@@ -809,22 +707,170 @@ ul.policystyle li:nth-child(even) ul li {
 }
 
 /*================================================================================================================
+Single - Featured Image
+================================================================================================================*/
+.fwtop .wp-post-image {
+    display: block;
+    margin: 0 auto
+}
+
+.featured-image-full {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 1000px;
+    padding-top: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media (min-width: 1400px) {
+    .featured-image-full {
+        padding-top: 0;
+        height: 500px;
+    }
+}
+
+/*
+--------------------------------------------------------------------------------------------------------------
+Single - Post Signature
+--------------------------------------------------------------------------------------------------------------
+*/
+button {
+    background-color: var(--main-blue-color);
+    color: var(--theme-white);
+    padding: 1em;
+    border-radius: 40px;
+}
+
+button:hover {
+    color: var(--link-hover-color);
+}
+
+.post_sig {
+    width: 400px;
+    background-color: #f1f5f9;
+    text-align: center;
+    margin: 1em auto;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+}
+
+.post_sig ul,
+.post_sig ul li {
+    list-style: none;
+    margin: 0;
+}
+
+.post_sig ul {
+    place-self: center;
+}
+
+/*
+--------------------------------------------------------------------------------------------------------------
+Single - Post Meta
+--------------------------------------------------------------------------------------------------------------
+*/
+.postmeta ul {
+    list-style: none;
+    font-size: 0.8em;
+    gap: .5em;
+}
+
+.postmeta ul li {
+    padding-right: .5em;
+    display: inline;
+}
+
+.postmeta ul li img {
+    width: 10px;
+    margin-bottom: 0;
+    margin-right: 5px;
+    margin-left: 2px;
+}
+
+.postmeta ul li:last-of-type {
+    border-right: unset;
+}
+
+/*================================================================================================================
+Translate Press Control
+================================================================================================================*/
+.trp-language-switcher-container.trp-floater-ls-names.trp-top-right.trp-color-dark {
+    min-width: 25px;
+}
+
+#trp-floater-ls-current-language .trp-ls-disabled-language img {
+    max-width: 25px;
+    max-width: 25px;
+}
+
+/*================================================================================================================
+fees menu styles
+https://provo.edu/school-fees/
+================================================================================================================*/
+.schoolFeesMenu .post {
+    text-align: center;
+    font-size: 23px;
+}
+
+/*================================================================================================================
+category styles
+================================================================================================================*/
+.categories-6h ul li a::before {
+    background-image: url(https://provo.edu/wp-content/uploads/2023/01/category-fallback.jpg);
+}
+
+.categories-6h ul li.classroom a::before {
+    background-image: url(https://provo.edu/wp-content/uploads/2023/01/classroom.jpg);
+}
+
+.categories-6h ul li.recog:before {
+    background-image: url(https://provo.edu/wp-content/uploads/2023/01/recog.jpg);
+}
+
+.categories-6h ul li.schools a::before {
+    background-image: url(https://provo.edu/wp-content/uploads/2023/01/schools.jpg);
+}
+
+.categories-6h ul li.cte a::before {
+    background-image: url(https://provo.edu/wp-content/uploads/2023/01/cte.jpg);
+}
+
+.categories-6h ul li.inno a::before {
+    background-image: url(https://provo.edu/wp-content/uploads/2023/01/innovation.jpg);
+}
+
+.categories-6h ul li.business a::before {
+    background-image: url(https://provo.edu/wp-content/uploads/2023/01/business.jpg);
+}
+
+.categories-6h ul li.schoolboard a::before {
+    background-image: url(https://provo.edu/wp-content/uploads/2023/01/public-news-story-board-report.jpg);
+}
+
+.categories-6h ul li.update a::before {
+    background-image: url(https://provo.edu/wp-content/uploads/2023/01/notice-updates.jpg);
+}
+
+.categories-6h ul li.podcast a::before {
+    background-image: url(https://provo.edu/wp-content/uploads/2023/08/podcast-banner-with-image-226.jpg);
+}
+
+
+/*================================================================================================================
 form styles 
 ================================================================================================================*/
 form label {
     padding: 15px 10px 0 0;
-    /* margin: 0 0 15px 0; */
     display: block;
-    /* width: 115px; */
 }
 
 form input {
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 3px;
-    /* margin: 0 0 15px 0; */
     padding: 10px;
-    /* width: calc(100% - 152px); */
     width: calc(100% - 20px);
 }
 
@@ -840,7 +886,6 @@ form button {
     width: 150px;
     margin: 20px 0 20px 0;
     padding: 10px;
-
     border: 1px solid #ccc;
 }
 
@@ -894,86 +939,4 @@ form input[type="search"] {
 form .block {
     display: block;
     margin-bottom: 15px;
-}
-
-/*================================================================================================================
-category styles
-================================================================================================================*/
-.categories-6h ul li a::before {
-    background-image: url(https://provo.edu/wp-content/uploads/2023/01/category-fallback.jpg);
-}
-
-.categories-6h ul li.classroom a::before {
-    background-image: url(https://provo.edu/wp-content/uploads/2023/01/classroom.jpg);
-}
-
-.categories-6h ul li.recog:before {
-    background-image: url(https://provo.edu/wp-content/uploads/2023/01/recog.jpg);
-}
-
-.categories-6h ul li.schools a::before {
-    background-image: url(https://provo.edu/wp-content/uploads/2023/01/schools.jpg);
-}
-
-.categories-6h ul li.cte a::before {
-    background-image: url(https://provo.edu/wp-content/uploads/2023/01/cte.jpg);
-}
-
-.categories-6h ul li.inno a::before {
-    background-image: url(https://provo.edu/wp-content/uploads/2023/01/innovation.jpg);
-}
-
-.categories-6h ul li.business a::before {
-    background-image: url(https://provo.edu/wp-content/uploads/2023/01/business.jpg);
-}
-
-.categories-6h ul li.schoolboard a::before {
-    background-image: url(https://provo.edu/wp-content/uploads/2023/01/public-news-story-board-report.jpg);
-}
-
-.categories-6h ul li.update a::before {
-    background-image: url(https://provo.edu/wp-content/uploads/2023/01/notice-updates.jpg);
-}
-
-.categories-6h ul li.podcast a::before {
-    background-image: url(https://provo.edu/wp-content/uploads/2023/08/podcast-banner-with-image-226.jpg);
-}
-
-/* Featured image Styles for Single post */
-.featured-image-full {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 1000px;
-    padding-top: 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-@media (min-width: 1400px) {
-    .featured-image-full {
-        padding-top: 0;
-        height: 500px;
-    }
-}
-
-/*================================================================================================================
-Translate Press Fixing
-================================================================================================================*/
-.trp-language-switcher-container.trp-floater-ls-names.trp-top-right.trp-color-dark {
-    min-width: 25px;
-}
-
-#trp-floater-ls-current-language .trp-ls-disabled-language img {
-    max-width: 25px;
-    max-width: 25px;
-}
-
-/*================================================================================================================
-fees menu styles
-https://provo.edu/school-fees/
-================================================================================================================*/
-.schoolFeesMenu .post {
-    text-align: center;
-    font-size: 23px;
 }

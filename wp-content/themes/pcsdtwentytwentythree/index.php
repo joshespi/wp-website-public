@@ -14,6 +14,7 @@ get_header();
 					'post_type' => array('post', 'podcast'),
 					'post_status' => 'publish',
 					'post__not_in' => array(1012), // Exclude post ID 1012
+					'ignore_sticky_posts' => true, // Exclude sticky posts
 					'date_query' => array(
 						array(
 							'after' => 'September 1, 2024',

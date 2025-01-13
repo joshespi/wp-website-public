@@ -7,7 +7,7 @@ get_header();
 //fetch all stored variables from the control post
 $get_to_know_fields = get_fields();
 ?>
-<main id="mainContent" class="homeMainContent">
+<main id="mainContent" class="homeMainContent"><!-- Start of #mainContent -->
 
 	<?php
 	$posts_to_show = 1;
@@ -28,152 +28,110 @@ $get_to_know_fields = get_fields();
 					<h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
 
 				</header>
-				<?php //echo the_content(); 
-				?>
 			</article>
 			<button class="closeAlert"><img src="https://globalassets.provo.edu/image/icons/round-delete-button-white.svg" alt="Close Alerts" /></button>
 		<?php endwhile;
 		?>
 
 	</section>
-	<div class="notgrid2">
+	<address class="headerAddress">
 		280 West 940 North Provo, Utah 801-374-4800
-	</div>
+	</address>
 	<?php
 	wp_reset_query();
 	?>
 
 	<h1 class="novisibility">Provo City School District</h1>
-	<section id="announcments">
-		<h2>Provo City School District Announcements</h2>
-		<?php
+	<section id="stickyArea" class="posts">
+		<div class="stories">
+			<?php
+			$sticky_query = new WP_Query(array(
+				'posts_per_page' => 3,
+				'post__in' => get_option('sticky_posts'),
+				'ignore_sticky_posts' => 1,
+				'post_status' => 'publish'
+			));
 
-		if ($get_to_know_fields['video_or_slider'] == 'video') {
-		?>
-
-			<video id="heroVideo" autoplay loop controls>
-				<source src="<?php echo $get_to_know_fields['video_url'] ?>" type="video/mp4">
-				Your browser does not support MP4 Format videos or HTML5 Video.
-			</video>
-		<?php
-		} elseif ($get_to_know_fields['video_or_slider'] == 'slider') {
-		?>
-			<div class="slick-wrapper">
-				<?php
-				$args = array('post_type' => 'announcement', 'posts_per_page' => 5, 'orderby'  => array('date' => 'DESC'));
-				// Variable to call WP_Query.
-				$the_query = new WP_Query($args);
-				if ($the_query->have_posts()) :
-					while ($the_query->have_posts()) : $the_query->the_post(); ?>
-
-						<article class="slide" style="background-image: url('<?php the_field('announcement_image'); ?>')">
-							<img src="<?php the_field('announcement_image'); ?>" alt="<?php the_field('announcement_text'); ?>" class="mobile-slide" />
-							<?php
-							if (get_field('announcement_text')) {
-							?>
-								<div class="slide-text">
-									<h3><?php the_title(); ?></h3>
-									<p><?php
-										the_field('announcement_text');
-										$slideLink = get_field('announcement_link');
-										$slideLinkLabel = get_field('announcement_link_label');
-										if ($slideLink) { ?>
-											<a href="<?php echo $slideLink ?>"><?php echo $slideLinkLabel ?></a>
-										<?php }
-										?>
-									</p>
-								</div>
-							<?php
-							}
-
-							?>
-
-						</article>
-
-				<?php endwhile;
-				else :
-					echo '<p>No Content Found</p>';
-				endif;
-				wp_reset_query();
-				?>
-			</div>
-		<?php
-		}
-
-		?>
+			if ($sticky_query->have_posts()) :
+				while ($sticky_query->have_posts()) : $sticky_query->the_post();
+					$background_image = '';
+					if (get_field('featured_image', $post_id)) {
+						$background_image = get_field('featured_image');
+					} elseif (has_post_thumbnail()) {
+						$background_image = get_the_post_thumbnail_url();
+					} else {
+						$background_image = get_stylesheet_directory_uri() . '/assets/images/building-image.jpg';
+					}
+			?>
+					<article style="background-image: url('<?php echo esc_url($background_image); ?>');">
+						<a href="<?php the_permalink(); ?>">
+							<h2><?php the_title(); ?></h2>
+						</a>
+					</article>
+			<?php endwhile;
+			else :
+				echo '<p>No Sticky Posts Found</p>';
+			endif;
+			wp_reset_postdata();
+			?>
+		</div>
 	</section>
 	<div id="belowSlider">
-		<section id="stayCurrent">
-
+		<section id="stayCurrent"><!-- Hero Link Area Start -->
 			<?php
-			//get repeater field 'hero_link_group'
 			// Check rows exists.
 			if (have_rows('hero_link_group')) {
 				// Loop through rows.
 				echo '<ul>';
 				while (have_rows('hero_link_group')) : the_row();
 					//display row
-					echo '<li class="' . get_sub_field('hero_link_icon') . '"><a href="' . get_sub_field('hero_link_address') . '">' . get_sub_field('hero_link_label') . '</a></li>';
+					echo '<li><a href="' . get_sub_field('hero_link_address') . '">' . get_sub_field('hero_link_label') . '</a></li>';
 				// End loop.
 				endwhile;
 				echo '</ul>';
 			}
 			?>
-
-		</section>
-
-		<section class="wpMenu">
+		</section><!-- Hero Link Area End -->
+		<section class="wpMenu"><!-- Highlight Menu Buttons Start -->
 			<?php
 			wp_reset_query();
 			$topMenu = get_field('select_a_menu');
-			// $menu_args = array('menu' => '1009');
 			wp_nav_menu(array('menu' => $topMenu));
 			?>
-		</section>
+		</section><!-- Highlight Menu Buttons End -->
 		<!-- I am Buttons Home Page End -->
-		<section id="homeNews">
-			<!-- News Home Page Start -->
+		<section id="homeNews" class="posts"> <!-- News Home Page Start -->
 			<h1>District News & Events</h1>
 			<p>The latest news from Provo City School District</p>
 			<div class="stories">
 				<?php
-				// excluding ID 1012. which is the Board Schedule.
-				$the_query = new WP_Query(
-					array(
-						'posts_per_page' => 3,
-						'post_type' => array('post', 'podcast'),
-						'post_status' => 'publish',
+				$the_query = new WP_Query(array(
+					'posts_per_page' => 3,
+					'post_type' => array('post', 'podcast'),
+					'post_status' => 'publish',
+					'ignore_sticky_posts' => true, // Exclude sticky posts
+					'date_query' => array(
+						array(
+							'after' => 'September 1, 2024',
+							'inclusive' => true,
+						),
 					),
-				);
+				));
 				if ($the_query->have_posts()) :
-					while ($the_query->have_posts()) : $the_query->the_post(); ?>
-						<article>
+					while ($the_query->have_posts()) : $the_query->the_post();
+						$background_image = '';
+						if (get_field('featured_image', $post_id)) {
+							$background_image = get_field('featured_image');
+						} elseif (has_post_thumbnail()) {
+							$background_image = get_the_post_thumbnail_url();
+						} else {
+							$background_image = get_stylesheet_directory_uri() . '/assets/images/building-image.jpg';
+						}
+				?>
+						<article style="background-image: url('<?php echo esc_url($background_image); ?>');">
 							<a href="<?php the_permalink(); ?>">
-								<div class="featured-image">
-
-									<?php
-									if (get_field('featured_image', $post_id)) {
-									?>
-										<img src="<?php echo get_field('featured_image'); ?>" alt="" class="" />
-									<?php
-									} elseif (has_post_thumbnail()) {
-										the_post_thumbnail();
-									} else { ?>
-										<img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/building-image.jpg'; ?>" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" width="217" height="175">
-									<?php } ?>
-
-								</div>
 								<h2><?php the_title(); ?></h2>
 							</a>
-							<div class="articleContent">
-								<?php
-								echo get_excerpt();
-								?>
-
-							</div>
-
-							<p class="postDate"><?php echo get_the_date(); ?></p>
-
 						</article>
 				<?php endwhile;
 				else :
@@ -184,12 +142,10 @@ $get_to_know_fields = get_fields();
 			<p class="moreNews"><a href="https://provo.edu/news/">Read More District News <span class="rightarrow"></span></a></p>
 			<h2>News Categories</h2>
 			<div class="categories-6h">
-
 				<?php wp_nav_menu(array('menu' => 'frontpage-categories')); ?>
 			</div>
 		</section> <!-- News Home Page End -->
-		<section class="sociallinks">
-			<!-- Start Social Media -->
+		<section class="sociallinks"><!-- Start Social Media -->
 			<h1>Social Media</h1>
 			See what's being discussed & shared
 			<ul>
@@ -200,9 +156,7 @@ $get_to_know_fields = get_fields();
 					</a>
 				</li>
 			</ul>
-		</section>
-
-
+		</section><!-- End Social Media -->
 	</div><!-- End of post slider content -->
 </main><!-- End of #mainContent -->
 <?php

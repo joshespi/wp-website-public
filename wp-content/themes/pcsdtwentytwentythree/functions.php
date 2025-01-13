@@ -80,43 +80,6 @@ function pcsd_assets()
 	if (is_page_template(array('template-school-listing.php'))) {
 		wp_enqueue_style('school-demo', get_template_directory_uri() . '/assets/css/school-demographics.css', '', $theme_version, false);
 	}
-	// if (
-	// 	is_page_template(
-	// 		//checks for school fee templates
-	// 		array(
-	// 			'template-school_fee_menu_21-22.php',
-	// 			'template-school_fee_menu_22-23.php',
-	// 			'template-school_fee_menu_23-24.php',
-	// 			'template-school_fee_menu_24-25.php',
-	// 			'template-school_fee_menu_21-22_spanish.php',
-	// 			'template-school_fee_menu_22-23_spanish.php',
-	// 			'template-school_fee_menu_23-24_spanish.php',
-	// 			'template-school_fee_menu_24-25_spanish.php',
-	// 			'template-school_fees_by_location_21-22_spanish.php',
-	// 			'template-school_fees_by_location_22-23_spanish.php',
-	// 			'template-school_fees_by_location_23-24_spanish.php',
-	// 			'template-school_fees_by_location_24-25_spanish.php',
-	// 			'template-school_fees_by_location_21-22.php',
-	// 			'template-school_fees_by_location_22-23.php',
-	// 			'template-school_fees_by_location_23-24.php',
-	// 			'template-school_fees_by_location_24-25.php',
-	// 			'template-intern_locations.php'
-	// 		)
-	// 		//checks for school fee single templates
-	// 	) || in_array(get_current_template(), array(
-	// 		'single-school_fees_21-22.php',
-	// 		'single-school_fees_22-23.php',
-	// 		'single-school_fees_23-24.php',
-	// 		'single-school_fees_24-25.php',
-	// 		'single-pagos_escolares_2122.php',
-	// 		'single-pagos_escolares_2223.php',
-	// 		'single-pagos_escolares_2324.php',
-	// 		'single-pagos_escolares_2425.php'
-	// 	))
-
-	// ) {
-	// 	wp_enqueue_style('school-fees', get_template_directory_uri() . '/assets/css/school-fees.css', '', $theme_version, false);
-	// }
 }
 add_action('wp_enqueue_scripts', 'pcsd_assets', 9999);
 
